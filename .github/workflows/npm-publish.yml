@@ -1,0 +1,38 @@
+name: Build and Publish to npm
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Prettier Check
+        run: npm run prettier-check
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Build Project
+        run: tsc
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

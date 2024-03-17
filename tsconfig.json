@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "incremental": true,
+    "outDir": "dist",
+    "rootDir": "./src/",
+    "esModuleInterop": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es2017",
+      "es7",
+      "es6",
+      "dom"
+    ],
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": "."
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "include": [
+    "src/**/*"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  }
+}

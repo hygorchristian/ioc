@@ -1,0 +1,13 @@
+node_modules
+dist
+.env
+
+# npmignore - content above this line is automatically generated and modifications may be omitted
+# see npmjs.com/npmignore for more details.
+src/*
+.editorconfig
+.eslintrc.js
+.nvmrc
+vitest.config.ts
+.prettierrc.json
+tsconfig.json

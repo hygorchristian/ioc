@@ -1,0 +1,12 @@
+# Editorconfig is awesome: https://editorconfig.org/
+# Install the VS Code Editor Config plugin to use the autoformat settings.
+root = true
+
+[*]
+indent_size = 2
+indent_style = space
+charset = utf-8
+trim_trailing_whitespace = true
+end_of_line = lf
+insert_final_newline = true
+quote_type = single
