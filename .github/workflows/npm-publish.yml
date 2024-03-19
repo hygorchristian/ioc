@@ -1,4 +1,4 @@
-name: Build and Publish to npm
+name: Build and Publish to NPM
 
 on:
   push:
@@ -24,13 +24,13 @@ jobs:
         run: npm run lint
 
       - name: Run Prettier Check
-        run: npm run prettier-check
+        run: npm run prettier:check
 
       - name: Run Tests
         run: npm test
 
       - name: Build Project
-        run: tsc
+        run: npm run build
 
       - name: Publish to npm
         run: npm publish

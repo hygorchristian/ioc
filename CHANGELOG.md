@@ -7,7 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ## [1.0.0] - 2024-03-17
+
 ### Added
+
 - Initial release of the `@hygorchristian/ioc` package.
 - Support for dependency injection with `bind`, `singleton`, and `mock` methods.
 - Ability to use real instances or mock instances interchangeably with the `useMock` method.
@@ -15,16 +17,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Examples and documentation for getting started and implementing in various project types.
 
 ### Changed
+
 - N/A
 
 ### Deprecated
+
 - N/A
 
 ### Removed
+
 - N/A
 
 ### Fixed
+
 - N/A
 
 ### Security
+
 - N/A

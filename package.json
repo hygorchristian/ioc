@@ -6,11 +6,18 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest",
-    "lint": "eslint . --ext .ts",
-    "prettier-check": "prettier --check .",
-    "prettier-write": "prettier --write ."
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write ."
   },
   "devDependencies": {
+    "@types/node": "^20.11.29",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-vitest-globals": "^1.5.0",
     "npmignore": "^0.3.1",
     "prettier": "^3.2.5",
     "typescript": "^5.4.2",

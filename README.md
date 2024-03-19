@@ -1,4 +1,4 @@
-# ioc :electric_plug:
+# IOC - inversion of control
 
 A lightweight and flexible dependency injection container for Node.js, designed to simplify the management of service
 dependencies in your applications.
@@ -51,7 +51,7 @@ Here's a basic example of setting up `IoC` in a Node.js application:
 
 ```ts
 import IoC from '@hygorchristian/ioc';
-import {MyService} from './services/MyService';
+import { MyService } from './services/MyService';
 
 const ioc = new IoC();
 

@@ -10,12 +10,7 @@
     "esModuleInterop": true,
     "target": "es5",
     "module": "commonjs",
-    "lib": [
-      "es2017",
-      "es7",
-      "es6",
-      "dom"
-    ],
+    "lib": ["es2017", "es7", "es6", "dom"],
     "isolatedModules": true,
     "moduleResolution": "node",
     "allowJs": true,
@@ -24,15 +19,12 @@
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "types": ["vitest/globals", "node"]
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
-  "include": [
-    "src/**/*"
-  ],
+  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*", "node_modules/vitest/globals.d.ts"],
   "typeAcquisition": {
     "enable": true
   }
