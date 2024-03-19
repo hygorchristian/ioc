@@ -1,6 +1,6 @@
 {
   "name": "@hygorchristian/ioc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A lightweight and flexible dependency injection container for Node.js projects.",
   "main": "index.js",
   "scripts": {
