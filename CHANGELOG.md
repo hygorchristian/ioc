@@ -6,13 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [1.0.0] - 2024-03-17
+## [0.0.1] - 2024-03-18
 
 ### Added
 
 - Initial release of the `@hygorchristian/ioc` package.
-- Support for dependency injection with `bind`, `singleton`, and `mock` methods.
-- Ability to use real instances or mock instances interchangeably with the `useMock` method.
+- Support for dependency injection with `register`, `registerSingleton`, and `mock` methods.
+- Ability to use real instances or mock instances interchangeably with the `enableMock` and `disableMock` method.
 - Comprehensive TypeScript definitions for strong typing and IntelliSense support in IDEs.
 - Examples and documentation for getting started and implementing in various project types.
 

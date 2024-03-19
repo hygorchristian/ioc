@@ -1,77 +1,107 @@
-# IOC - inversion of control
+# IOC - Inversion of Control
 
-A lightweight and flexible dependency injection container for Node.js, designed to simplify the management of service
-dependencies in your applications.
+A lightweight and flexible dependency injection container for Node.js, designed to simplify the management of service dependencies in your applications. The `ioc` package provides a straightforward approach to implementing inversion of control, supporting singleton and transient service lifetimes, and facilitating testing with mock implementations.
+
+
+## Table of Contents
+
+- [Features :sparkles:](#features-sparkles)
+- [Installation :package:](#installation-package)
+- [Quick Start :rocket:](#quick-start-rocket)
+- [Documentation :books:](#documentation-books)
+- [Contributing :handshake:](#contributing-handshake)
+- [Issues and Feature Requests :mag:](#issues-and-feature-requests-mag)
+- [License :balance_scale:](#license-balance_scale)
 
 ## Features :sparkles:
 
-- **Simple API**: Easy to use for registering and resolving dependencies.
-- **Support for Mocks**: Facilitates testing by allowing the substitution of mock implementations.
-- **Singletons and Transient Services**: Supports both single instance and multiple instances service lifetimes.
+- **Simple API**: Intuitive methods for registering, resolving, and mocking dependencies.
+- **Support for Mocks**: Easily replace real implementations with mocks for testing.
+- **Singletons and Transient Services**: Choose between single instance (singleton) or multiple instances (transient) for your services.
+- **TypeScript Support**: Fully typed for excellent IntelliSense and type checking.
 
 ## Installation :package:
 
-Install `ioc` using npm:
-
 ```bash
 npm install @hygorchristian/ioc
-```
-
-Or using yarn:
-
-```bash
+# or
 yarn add @hygorchristian/ioc
 ```
 
 ## Quick Start :rocket:
 
-First, import `IoC` and create an instance of your container:
+### Creating an IoC Container
+
+Import `InversionOfControl` from the package and instantiate it:
 
 ```ts
-import IoC from '@hygorchristian/ioc';
+import InversionOfControl from '@hygorchristian/ioc';
 
-const ioc = new IoC();
+// Define your container contract
+interface Dependencies {
+  'Core/Env': Env;
+  'Service/Database': Database;
+}
+
+const ioc = new InversionOfControl<Dependencies>();
 ```
 
-Next, register some services:
+> **Note**: The `Dependencies` interface is used to define the contract of your container.
+> It should contain the keys of your services and their respective types. This is optional, but recommended for better type checking and IntelliSense.
+
+### Registering Services
+
+Register your services with the container:
 
 ```ts
-ioc.singleton('ServiceName', () => new Service());
+// Register a transient service
+ioc.register('Core/Env', () => new Env());
+
+// Register a service that depends on another service
+ioc.register('Service/Database', (dependencies) => {
+  const env = dependencies.use('Core/Env');
+  return new Config(env);
+})
+
+// Register a singleton service that depends on another service
+ioc.registerSingleton('Service/Database', (dependencies) => {
+  const config = dependencies.use('Service/Config');
+  return new Database(config)
+});
 ```
 
-And use them:
+> **Note**: It's recommended to register your services in the entry point of your application, such as `index.ts` or `app.ts` if you want your dependencies to be globally available.
+
+### Resolving Services
+
+Resolve an instance of your service:
 
 ```ts
-const serviceInstance = ioc.use('ServiceName');
+const database = ioc.use('Service/Database');
 ```
 
-## Examples :bulb:
+### Using Mocks for Testing
 
-Here's a basic example of setting up `IoC` in a Node.js application:
+Replace implementations with mocks for testing purposes:
 
 ```ts
-import IoC from '@hygorchristian/ioc';
-import { MyService } from './services/MyService';
-
-const ioc = new IoC();
-
-ioc.singleton('MyService', () => new MyService());
-
-const myService = ioc.use('MyService');
+ioc.mock('Service/Database', () => new MockDatabase());
+ioc.enableMocks();
+const mockDatabase = ioc.use('Service/Database');
 ```
 
-For a more detailed guide and advanced usage, please refer to the [documentation]().
+## Documentation :books:
+
+For detailed documentation, including advanced features and examples, visit [GitHub repository documentation](https://github.com/hygorchristian/ioc).
 
 ## Contributing :handshake:
 
-We welcome contributions to `ioc`! If you have suggestions, bug reports, or contributions, please open an issue or pull
-request on our [GitHub repository](https://github.com/hygorchristian/ioc).
+Contributions are welcome! Please refer to the [contribution guidelines](https://github.com/hygorchristian/ioc/CONTRIBUTING.md) for more information.
 
-## Reporting Issues :mag:
+## Issues and Feature Requests :mag:
 
-Found a bug or have a feature request? Please report it using
-the [GitHub Issue Tracker](https://github.com/hygorchristian/ioc/issues).
+Encountered a bug or have an idea? Please open an issue on the [GitHub Issue Tracker](https://github.com/hygorchristian/ioc/issues).
 
 ## License :balance_scale:
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+`ioc` is licensed under the MIT License. See the [LICENSE](https://github.com/hygorchristian/ioc/LICENSE.md) file for more details.

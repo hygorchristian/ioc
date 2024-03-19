@@ -2,7 +2,7 @@ import {
   type DependenciesMap,
   type DependencyFactory,
   type MockFactory
-} from './InversionOfControlContract';
+} from './types';
 
 /**
  * @class InversionOfControl
