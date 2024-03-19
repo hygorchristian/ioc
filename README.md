@@ -2,7 +2,6 @@
 
 A lightweight and flexible dependency injection container for Node.js, designed to simplify the management of service dependencies in your applications. The `ioc` package provides a straightforward approach to implementing inversion of control, supporting singleton and transient service lifetimes, and facilitating testing with mock implementations.
 
-
 ## Table of Contents
 
 - [Features :sparkles:](#features-sparkles)
@@ -58,15 +57,15 @@ Register your services with the container:
 ioc.register('Core/Env', () => new Env());
 
 // Register a service that depends on another service
-ioc.register('Service/Database', (dependencies) => {
+ioc.register('Service/Database', dependencies => {
   const env = dependencies.use('Core/Env');
   return new Config(env);
-})
+});
 
 // Register a singleton service that depends on another service
-ioc.registerSingleton('Service/Database', (dependencies) => {
+ioc.registerSingleton('Service/Database', dependencies => {
   const config = dependencies.use('Service/Config');
-  return new Database(config)
+  return new Database(config);
 });
 ```
 
