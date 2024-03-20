@@ -1,3 +1,11 @@
+/*
+ * @hygorchristian/ioc
+ *
+ * Copyright (c) 2024 Hygor Christian Dias <hygor.christian@gmail.com>.
+ *
+ * For the full copyright and license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 import { describe } from 'vitest';
 import InversionOfControl from '../InversionOfControl';
 
@@ -8,7 +16,13 @@ interface Dependencies {
   'Service/Logger': Logger;
   'Service/Database': Database;
 }
-describe('Coersion', () => {
+
+/**
+ * @description
+ * If this test have type coercion issues, it will work the same way, but we expect to see type errors.
+ * This will pass the tests but it will fail the linting, and the package will not be published with linting or type errors
+ */
+describe('Type Coercion', () => {
   const ioc = new InversionOfControl<Dependencies>();
 
   it('registers and retrieves a dependency', () => {
