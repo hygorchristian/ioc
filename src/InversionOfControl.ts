@@ -190,13 +190,18 @@ export default class InversionOfControl<
    * ```
    * @param namespace
    */
-  use(namespace: Namespace): ContainerContract[Namespace] {
+  use<TNamespace extends Namespace>(
+    namespace: TNamespace
+  ): ContainerContract[TNamespace] {
     if (this.useMocksFlag) {
       const mockFactory = this.mocks.get(namespace);
       if (mockFactory) {
         const originalValue = this.getOriginalValue(namespace);
-        // @ts-expect-error
-        return mockFactory(this, originalValue) as ContainerContract[Namespace];
+        return mockFactory(
+          // @ts-expect-error
+          this,
+          originalValue
+        ) as ContainerContract[TNamespace];
       }
     }
 
@@ -209,10 +214,12 @@ export default class InversionOfControl<
    * @param namespace
    * @private
    */
-  private getOriginalValue(namespace: Namespace): ContainerContract[Namespace] {
+  private getOriginalValue<TNamespace extends Namespace>(
+    namespace: TNamespace
+  ): ContainerContract[TNamespace] {
     const instance = this.instances.get(namespace);
     if (instance) {
-      return instance as ContainerContract[Namespace];
+      return instance as ContainerContract[TNamespace];
     }
 
     const factory = this.dependencies.get(namespace);
@@ -221,6 +228,6 @@ export default class InversionOfControl<
     }
 
     // @ts-expect-error
-    return factory(this) as ContainerContract[Namespace];
+    return factory(this) as ContainerContract[TNamespace];
   }
 }
