@@ -1,12 +1,17 @@
 {
   "name": "@hygorchristian/ioc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A lightweight and flexible dependency injection container for Node.js projects.",
   "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "vitest",
+    "prepublish": "tsc --build",
+    "prepack": "npmignore",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
